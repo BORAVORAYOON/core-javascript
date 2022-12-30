@@ -43,7 +43,7 @@ let whichTruthy = false || '' || [2,3].length || {thisIsTruthy:true}; // 2
 빈 문자열을 입력하거나 입력을 취소했다면 "취소되었습니다."라는 메시지를 보여주세요.
 순서도는 다음과 같습니다. */
 
-let userName = prompt('아이디를 입력해주세요!', '');
+/* let userName = prompt('아이디를 입력해주세요!', '');
 
 if (userName === 'Admin') {
   let pw = prompt('비밀번호를 입력해 주세요!', '');
@@ -56,6 +56,27 @@ if (userName === 'Admin') {
     console.log('잘못된 비밀번호를 입력했습니다.');
   }
 } else if (userName === ''|| userName === null) {
+  console.log('취소했습니다');
+} else {
+  console.log('인증되지 않은 사용자 입니다.');
+} */
+
+
+// 변수명.toLowerCase : 문자의 대소문자를 가리지 않도록..대신 비교할 값은 무조건 소문자!!
+// toLowerCase : null 만나면 에러가 나기 때문에 ?(Optional chaining)을 넣어줘야 에러가 안난다.
+let userName = prompt('아이디를 입력해주세요!', '');
+
+if (userName?.toLowerCase() === 'admin') {
+  let pw = prompt('비밀번호를 입력해 주세요!', '');
+  
+  if (pw?.toLowerCase() === 'themaster') {
+    console.log('환영합니다!');
+  } else if (pw === ''|| pw === null) {
+    console.log('취소했습니다');
+  } else {
+    console.log('잘못된 비밀번호를 입력했습니다.');
+  }
+} else if (userName.replace(/\s*/g,'') === ''|| userName === null) {
   console.log('취소했습니다');
 } else {
   console.log('인증되지 않은 사용자 입니다.');
