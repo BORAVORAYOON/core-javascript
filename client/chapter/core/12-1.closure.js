@@ -8,9 +8,8 @@
 //   즉, 클로저에 정의된 함수는 그것이 작성된 환경을 '기억'합니다.
 // 클로저를 사용하는 단 하나의 이유는 전역의 오염을 막기 위해서 이다.
 
-function first() {
+/* function first() {
   let x = 10;
-
   function second() {
     let y = 30;
 
@@ -18,10 +17,10 @@ function first() {
   }
 
   return second // 함수 자체를 리턴
-}
-
-const value = first() // first()는 second의 값이 아닌 함수 자체를 리턴 first() = second
+} */
+// const value = first() // first()는 second의 값이 아닌 함수 자체를 리턴 first() = second
 // value() = first()() = second()이기 때문에 결국 second 함수의 결과 값이 반환된다.
+
 
 
 /* let count = 0;
