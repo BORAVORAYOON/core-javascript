@@ -32,3 +32,28 @@ h1 {
   transition: all .2s;
   /* pointer-events: none; */
 }
+
+.visual {
+  padding: 1rem;
+  background-color: royalblue;
+}
+
+.news {
+  padding: 1rem;
+  background-color: orange;
+}
+
+.desc {
+  padding: 1rem;
+  background-color: hotpink;
+}
+
+.pop {
+  width: 30vw;
+  height: 30vh;
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+}
