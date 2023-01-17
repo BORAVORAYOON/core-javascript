@@ -1,10 +1,13 @@
+/* import { getNode } from '../dom/getNode.js';
+import { insertLast } from '../dom/insert.js'; */
+
 /* readyState
 0: uninitalized
 1: loading
 2: loaded
-3:interative
-4:complete
-*/
+3: interative
+4: complete */
+
 
 /* const xhr = new XMLHttpRequest();
 
@@ -25,31 +28,97 @@ xhr.addEventListener('readystatechange', () => {
 xhr.send(); */
 
 
-function xhrData(method, url, body) {
+export function xhrData({
+  url = '',
+  method = 'GET',
+  body = null,
+  onSuccess = null,
+  onFail = null,
+  headers = {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*'
+  }
+}) {
+
+
   const xhr = new XMLHttpRequest();
 
   // 비동기 통신 오픈
   xhr.open(method, url);
+
+  /*  Object.entries(headers).forEach(([key, value]) => {
+     xhr.setRequestHeader(key, value);
+   }); */
 
   xhr.addEventListener('readystatechange', () => {
     const { status, readyState, response } = xhr;  // 객체 구조 분해 할당
 
     if (status >= 200 && status < 400) {
       if (readyState === 4) {
-        console.log('통신 성공');
-        console.log(JSON.parse(xhr.response));
+        // console.log('통신 성공');
+
+        onSuccess(JSON.parse(response));
+        console.log();
       }
     } else {
-      console.error('통신 실패');
+      // console.error('통신 실패');
+      onFail('통신 실패')
     }
   });
 
   // 서버에 요청
-  xhr.send(JSON.stringify(xhrData));
+  xhr.send(JSON.stringify(body));
+}
+
+/* xhrData({
+  url: 'https://jsonplaceholder.typicode.com/user',
+  onSuccess: (result) => {
+    console.log(result);
+  },
+  onFail: (err) => {
+    console.error(err);
+  }
+}) */
+
+
+xhrData.get = (url, onSuccess, onFail) => {
+  xhrData({
+    url,
+    onSuccess,
+    onFail
+  })
+}
+
+xhrData.post = (url, body, onSuccess, onFail) => {
+  xhrData({
+    method: 'POST',
+    url,
+    onSuccess,
+    onFail
+  })
+}
+
+xhrData.put = (url, body, onSuccess, onFail) => {
+  xhrData({
+    method: 'PUT',
+    body,
+    url,
+    onSuccess,
+    onFail
+  })
+}
+xhrData.delete = (url, body, onSuccess, onFail) => {
+  xhrData({
+    method: 'DELETE',
+    url,
+    onSuccess,
+    onFail
+  })
 }
 
 
-xhrData('POST', 'https://jsonplaceholder.typicode.com/users', {
+
+/* xhrData('POST', 'https://jsonplaceholder.typicode.com/users', {
   "name": "lookatme",
   "username": "bora",
   "email": "yoonbora1803@naver.com",
@@ -70,5 +139,5 @@ xhrData('POST', 'https://jsonplaceholder.typicode.com/users', {
     "catchPhrase": "Multi-layered client-server neural-net",
     "bs": "harness real-time e-markets"
   }
-})
+}) */
 
