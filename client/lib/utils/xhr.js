@@ -182,18 +182,70 @@ export function xhrPromise(options = {}) { //option = {} > option이 객체라�
 
 }
 
+// xhrPromise({
+//   url:'https://jsonplaceholder.typicode.com/users/1'
+// })
+// .then((res)=>{
+//   console.log(res);
+// })
+// .catch((err)=>{
+//   console.log(err);
+// })
+
 xhrPromise.get = (url) => {
-  xhrPromise({
+  return xhrPromise({
     url
   })
 }
 
-xhrPromise({
-  url: 'https://jsonplaceholder.typicode.com/users/1'
-})
+xhrPromise.post = (url, body) => {
+  return xhrPromise({
+    url,
+    body,
+    method: 'POST'
+  })
+}
+
+xhrPromise.put = (url, body) => {
+  return xhrPromise({
+    url,
+    body,
+    method: 'PUT'
+  })
+}
+
+xhrPromise.delete = (url) => {
+  return xhrPromise({
+    url,
+    method: 'DELETE'
+  })
+}
+
+xhrPromise
+  .get('https://jsonplaceholder.typicode.com/users/1') // promise
   .then((res) => {
     console.log(res);
   })
   .catch((err) => {
     console.log(err);
   })
+
+
+//async await
+
+
+
+/* function delayA() {
+  return new Promise((resolve, reject) => {
+    resolve('완료')
+  })
+} */
+
+async function delayA() {
+  return '완료'
+}
+
+let result = await delayA();
+
+
+

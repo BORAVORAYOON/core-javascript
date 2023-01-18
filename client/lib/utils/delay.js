@@ -86,3 +86,33 @@ function delayP(options = {}) {
   .then(res => console.log(res))
   .catch(err => console.log(err))
  */
+
+
+/* async function 라면끓이기() {
+
+  try {
+
+    await delayP(1500)
+    console.log('물넣기');
+
+    await delayP(1500)
+    console.log('스프넣기');
+
+    await delayP(1500)
+    console.log('면넣기');
+
+    await delayP(1500)
+    console.log('계란넣기');
+
+    // throw new Error('계란 껍질이 들어가버렸다');
+
+    await delayP(1500)
+    console.log('그릇에담기');
+
+  } catch (err) {
+    console.log(err);
+  }
+
+}
+
+라면끓이기() */
