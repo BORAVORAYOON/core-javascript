@@ -223,12 +223,12 @@ xhrPromise.delete = (url) => {
 
 xhrPromise
   .get('https://jsonplaceholder.typicode.com/users/1') // promise
-  .then((res) => {
-    console.log(res);
-  })
-  .catch((err) => {
-    console.log(err);
-  })
+// .then((res) => {
+//   console.log(res);
+// })
+// .catch((err) => {
+//   console.log(err);
+// })
 
 
 //async await
